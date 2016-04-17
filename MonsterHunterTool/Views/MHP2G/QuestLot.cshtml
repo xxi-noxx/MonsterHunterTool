@@ -1,0 +1,24 @@
+﻿@using MonsterHunterTool.Models.ViewModel
+@model QuestLotViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Title</h2>
+@Html.BeginForm()
+<div class="col-xs-4">
+	プレイヤー人数：
+</div>
+<div class="col-xs-8">
+	@Html.DropDownListFor(x => "PlayerNum", Model.PlayerNumList)
+</div>
+@foreach(var playerName in Model.PlayerNameList)
+{
+	int index = 1;
+	<div class="form-group">
+		@Html.Label("playerName" + index.ToString(), "プレイヤー" + index.ToString())
+		@Html.TextBoxFor(x => playerName)
+	</div>
+	index++;
+}
+<input type="submit" class="btn btn-primary btn-lg" value="抽選!!" />
